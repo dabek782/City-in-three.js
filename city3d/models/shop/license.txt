@@ -1,0 +1,11 @@
+Model Information:
+* title:	Store Center
+* source:	https://sketchfab.com/3d-models/store-center-b6ce84d6cf314732999e7f6e996bb034
+* author:	CristianMFQ (https://sketchfab.com/cristianFQ)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Store Center" (https://sketchfab.com/3d-models/store-center-b6ce84d6cf314732999e7f6e996bb034) by CristianMFQ (https://sketchfab.com/cristianFQ) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

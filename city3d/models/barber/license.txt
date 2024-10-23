@@ -1,0 +1,11 @@
+Model Information:
+* title:	Barber Shop - Stylised
+* source:	https://sketchfab.com/3d-models/barber-shop-stylised-20de19269fc846e99dff44aef2041283
+* author:	cjmitchell (https://sketchfab.com/cjmitchell)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Barber Shop - Stylised" (https://sketchfab.com/3d-models/barber-shop-stylised-20de19269fc846e99dff44aef2041283) by cjmitchell (https://sketchfab.com/cjmitchell) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
