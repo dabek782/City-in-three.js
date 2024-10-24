@@ -1,15 +1,11 @@
 import * as three from 'three'
 import { OrbitControls } from 'three/examples/jsm/Addons.js'
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { objectDirection } from 'three/webgpu';
+import { objectDirection, rotate } from 'three/webgpu';
 import road from '/textures/road.jpg'
 import asphalt from '/textures/asphalt.jpg'
-import parkinglot from '/textures/parkinglot.jpg'
-
-
-
-
-
+import { mod } from 'three/webgpu';
+import { sobel } from 'three/webgpu';
 
 //creating scene and rendering
 const scene = new three.Scene();
@@ -58,7 +54,7 @@ model_loader.load("models/playground/scene.gltf", (play)=>{
 //shop
 model_loader.load("models/shop/scene.gltf", (shop)=>{
   scene.add(shop.scene)
-  shop.scene.position.set(-170,2.5,-130)
+  shop.scene.position.set(-170,2.6,-130)
   shop.scene.scale.set(8,8,8)
   shop.scene.rotateY(Math.PI/2)
 })
@@ -69,16 +65,46 @@ model_loader.load("models/warehouse/scene.gltf", (warehouse)=>{
   warehouse.scene.position.set(105,3,-120)
   warehouse.scene.scale.set(1.57,1,1.79)
 })
-//adding cars
-//fiat
-model_loader.load("models/fiat/scene.gltf" , (fiat) =>{
-  scene.add(fiat.scene)
-  fiat.scene.position.set(126,5,180)
-  fiat.scene.scale.set(0.1,0.1,0.1)
-  fiat.scene.rotateY(Math.PI/2)
+//adding cars using class
 
-})
+class Car{
+  constructor(model , speed,positionx , positiony ,positionz){
+     this.modelpath = model,
+     this.speed = speed,
+     this.positionx = positionx
+     this.positiony = positiony
+     this.positionz = positionz
+     this.sceneobject = null
+  }
+  adding_model(model_loader, angle, scalex ,scaley ,scalez){
+    model_loader.load(this.modelpath , (gltf)=>{
+      scene.add(gltf.scene)
+      gltf.scene.position.set(this.positionx,this.positiony,this.positionz)
+      this.sceneobject = gltf.scene
+      if(typeof angle == 'number'){
+        gltf.scene.rotateY(angle)
+      }
+      if(scalex && scaley && scalez){
+        gltf.scene.scale.set(scalex,scaley,scalez)
 
+      }
+  
+    })
+  }
+  move(sceneobject){
+    this.positionz += this.speed
+    this.sceneobject.position.z = this.positionz
+
+  }
+  
+}
+const cars = [
+  new Car("models/scion/scene.gltf",0.2 ,0 ,3,30),
+  new Car("models/vaz/scene.gltf",0 ,-100 ,2.5,-30)
+
+]
+cars[0].adding_model(model_loader , -Math.PI/2, 3, 3,3)
+cars[1].adding_model(model_loader,Math.PI/2 ,0.099,0.099,0.099)
 
 //creating platforms
 const plane_geo1 = new three.PlaneGeometry(600,200);
@@ -101,10 +127,6 @@ scene.add(plane2)
 plane2.position.set(0,3,-148)
 plane2.rotateX(Math.PI/2)
 
-
-
-
-
 //setting up side road
 const side_road_geo = new three.PlaneGeometry(200,80)
 const side_road_mesh = new three.MeshBasicMaterial({
@@ -118,8 +140,6 @@ side_road.position.set(5,3.1,150)
 side_road.rotateX(Math.PI/2)
 side_road.rotateZ(Math.PI/2)
 
-
-
 //main road
 const main_road_geo = new three.PlaneGeometry(600,100)
 const main_road_mesh = new three.MeshBasicMaterial({
@@ -132,9 +152,6 @@ scene.add(main_road)
 main_road.rotateX(Math.PI/2)
 
 main_road.position.set(0,3,0.5)
-
-
-
 
 //shop road
 const shop_road_geo = new three.PlaneGeometry(200,80)
@@ -151,8 +168,11 @@ shop_road.rotateZ(Math.PI/2)
 
 
 
+
 function animate(){
   rendering.setAnimationLoop(animate);
   rendering.render(scene,camera)
+  cars[0].move()
+  
 }
 animate()
