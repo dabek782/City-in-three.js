@@ -11,8 +11,7 @@ const scene = new three.Scene();
 const rendering = new three.WebGLRenderer({
   canvas:document.querySelector('#bg')
 })
-const axes = new three.AxesHelper(100)
-scene.add(axes)
+
 const camera =  new three.PerspectiveCamera(75 , innerWidth/innerHeight, 1,100000000)
 const control = new OrbitControls(camera , rendering.domElement)
 camera.position.set(0,10,150)
@@ -166,10 +165,10 @@ class Car{
 
       else{
       if (this.positionx >= 0){
-        this.sceneobject.position.x -= this.speed
+        this.sceneobject.position.x += this.speed
       }
       else{
-        this.sceneobject.position.x += this.speed
+        this.sceneobject.position.x -= this.speed
       }
     }
     }
@@ -185,10 +184,10 @@ const cars = [
   
 
 ]
-cars[0].adding_model(model_loader , -Math.PI/2, 3, 3,3)
-cars[1].adding_model(model_loader,Math.PI/2 ,0.099,0.099,0.099)
-cars[2].adding_model(model_loader,Math.PI/2, 8,8,8)
-cars[3].adding_model(model_loader,-Math.PI/2 ,1000,1000,1000)
+cars[0].adding_model(model_loader , Math.PI/2, 3, 3,3)
+cars[1].adding_model(model_loader,-Math.PI/2 ,0.099,0.099,0.099)
+cars[2].adding_model(model_loader,-Math.PI/2, 8,8,8)
+cars[3].adding_model(model_loader,Math.PI/2 ,1000,1000,1000)
 
 
 //creating platforms
