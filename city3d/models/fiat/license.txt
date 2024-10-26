@@ -1,0 +1,11 @@
+Model Information:
+* title:	Fiat 125p
+* source:	https://sketchfab.com/3d-models/fiat-125p-4da84df318374b4bb46ba8b99b1c0d4e
+* author:	qfep (https://sketchfab.com/xmitkogikerx)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Fiat 125p" (https://sketchfab.com/3d-models/fiat-125p-4da84df318374b4bb46ba8b99b1c0d4e) by qfep (https://sketchfab.com/xmitkogikerx) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -1,17 +1,17 @@
 import * as three from 'three'
 import { OrbitControls } from 'three/examples/jsm/Addons.js'
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { objectDirection, rotate } from 'three/webgpu';
 import road from '/textures/road.jpg'
 import asphalt from '/textures/asphalt.jpg'
-import { mod } from 'three/webgpu';
-import { sobel } from 'three/webgpu';
+import { Sampled3DTexture } from 'three/src/renderers/common/SampledTexture.js';
 
 //creating scene and rendering
 const scene = new three.Scene();
 const rendering = new three.WebGLRenderer({
   canvas:document.querySelector('#bg')
 })
+const axes = new three.AxesHelper(100)
+scene.add(axes)
 const camera =  new three.PerspectiveCamera(75 , innerWidth/innerHeight, 1,100000000)
 const control = new OrbitControls(camera , rendering.domElement)
 camera.position.set(0,10,150)
@@ -71,11 +71,13 @@ class Car{
   constructor(model , speed,positionx , positiony ,positionz){
      this.modelpath = model,
      this.speed = speed,
-     this.positionx = positionx
-     this.positiony = positiony
-     this.positionz = positionz
+     this.positionx = positionx,
+     this.positiony = positiony,
+     this.positionz = positionz,
      this.sceneobject = null
+
   }
+
   adding_model(model_loader, angle, scalex ,scaley ,scalez){
     model_loader.load(this.modelpath , (gltf)=>{
       scene.add(gltf.scene)
@@ -88,28 +90,54 @@ class Car{
         gltf.scene.scale.set(scalex,scaley,scalez)
 
       }
-  
+      
     })
+   
+    }
+  get Sceneobject(){
+    return this.sceneobject
   }
-  move(sceneobject){
-    this.positionz += this.speed
-    this.sceneobject.position.z = this.positionz
+  get PositioX(){
+    return this.positionx
+  }
+  move(){
+    if(!this.sceneobject) return
+    else{
+      if(this.sceneobject.position.x == 300 || this.sceneobject.position.x == -300){
+        this.sceneobject.position.x = this.positionx
+      }
 
-  }
+      else{
+      if (this.positionx >= 0){
+        this.sceneobject.position.x -= this.speed
+      }
+      else{
+        this.sceneobject.position.x += this.speed
+      }
+    }
+    }
+
   
 }
+}
 const cars = [
-  new Car("models/scion/scene.gltf",0.2 ,0 ,3,30),
-  new Car("models/vaz/scene.gltf",0 ,-100 ,2.5,-30)
+  new Car("models/scion/scene.gltf",3 ,0 ,3,30),
+  new Car("models/vaz/scene.gltf",1 ,-120 ,2.5,-30),
+  new Car ("models/police/scene.gltf", 2 , -70 , 2.5 , -28),
+  new Car ("models/fiat/scene.gltf", 1 , 100 , 3, 30)
+  
 
 ]
 cars[0].adding_model(model_loader , -Math.PI/2, 3, 3,3)
 cars[1].adding_model(model_loader,Math.PI/2 ,0.099,0.099,0.099)
+cars[2].adding_model(model_loader,Math.PI/2, 8,8,8)
+cars[3].adding_model(model_loader,-Math.PI/2 ,1000,1000,1000)
+
 
 //creating platforms
 const plane_geo1 = new three.PlaneGeometry(600,200);
 const plane_mesh1 = new three.MeshBasicMaterial({
-  color: 0x0808080,
+  color: 0x138510,
   side: three.DoubleSide
 })
 const plane1= new three.Mesh(plane_geo1 , plane_mesh1);
@@ -165,14 +193,29 @@ scene.add(shop_road)
 shop_road.position.set(-260,3.4,-150)
 shop_road.rotateX(Math.PI/2)
 shop_road.rotateZ(Math.PI/2)
+//creating sidewalk
+function creating_sidewalk(Positionx , Positiony , Positionz , Width , Length){
+  const sidewalk_geo = new three.PlaneGeometry(Width , Length)
+  const sidewalk_mesh = new three.MeshBasicMaterial({
+    color : 0x0808080,
+    side : three.DoubleSide
 
+  })
+  const sidewalk = new three.Mesh(sidewalk_geo,sidewalk_mesh)
+  scene.add(sidewalk)
+  sidewalk.position.set(Positionx,Positiony,Positionz)
+  sidewalk.rotateY(Math.Pi/2)
 
+}
+creating_sidewalk(-100,30,-30 ,25,80)
 
 
 function animate(){
   rendering.setAnimationLoop(animate);
   rendering.render(scene,camera)
   cars[0].move()
-  
+  cars[1].move()
+  cars[2].move()
+  cars[3].move()
 }
 animate()
