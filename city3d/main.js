@@ -4,6 +4,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import road from '/textures/road.jpg'
 import asphalt from '/textures/asphalt.jpg'
 import { Sampled3DTexture } from 'three/src/renderers/common/SampledTexture.js';
+import { PI } from 'three/webgpu';
 
 //creating scene and rendering
 const scene = new three.Scene();
@@ -41,7 +42,7 @@ model_loader.load("models/apartment/scene.gltf",(apartment)=>{
 //barber model
 model_loader.load("models/barber/scene.gltf", (barber)=>{
   scene.add(barber.scene)
-  barber.scene.position.set(-70, 3 , 95)
+  barber.scene.position.set(-70, 3.5 , 95)
   barber.scene.scale.set(8,8,8)
   barber.scene.rotateY(Math.PI)
 })
@@ -64,6 +65,62 @@ model_loader.load("models/warehouse/scene.gltf", (warehouse)=>{
   scene.add(warehouse.scene)
   warehouse.scene.position.set(105,3,-120)
   warehouse.scene.scale.set(1.57,1,1.79)
+})
+//bin
+model_loader.load("models/huhhuh/scene.gltf", (bin)=>{
+  scene.add(bin.scene)
+  bin.scene.position.set(-164,3.4,76)
+  bin.scene.scale.set(10,10,10)
+})
+//trees
+model_loader.load("models/tree/scene.gltf", (tree)=>{
+  scene.add(tree.scene)
+  tree.scene.position.set(-130,3.4,250)
+  tree.scene.scale.set(0.5,0.5,0.5)
+})
+model_loader.load("models/tree/scene.gltf", (tree)=>{
+  scene.add(tree.scene)
+  tree.scene.position.set(20,3.4,250)
+  tree.scene.scale.set(0.5,0.5,0.5)
+})
+//benches
+model_loader.load("models/bench/scene.gltf", (bench)=>{
+  scene.add(bench.scene)
+  bench.scene.position.set(180,3.4,230)
+  bench.scene.scale.set(0.05,0.05,0.05)
+})
+model_loader.load("models/bench/scene.gltf", (bench)=>{
+  scene.add(bench.scene)
+  bench.scene.position.set(180,3.4,190)
+  bench.scene.scale.set(0.05,0.05,0.05)
+  bench.scene.rotateY(Math.PI)
+})
+model_loader.load("models/bench/scene.gltf", (bench)=>{
+  scene.add(bench.scene)
+  bench.scene.position.set(235,3.4,210)
+  bench.scene.scale.set(0.05,0.05,0.05)
+  bench.scene.rotateY(Math.PI/2)
+})
+model_loader.load("models/bench/scene.gltf", (bench)=>{
+  scene.add(bench.scene)
+  bench.scene.position.set(125,3.4,210)
+  bench.scene.scale.set(0.05,0.05,0.05)
+  bench.scene.rotateY(-Math.PI/2)
+})
+//table
+model_loader.load("models/table/scene.gltf", (table)=>{
+  scene.add(table.scene)
+  table.scene.position.set(180,3.4,215)
+  table.scene.scale.set(10,10,10)
+
+})
+//ralph
+model_loader.load("models/ralph/scene.gltf", (ralph)=>{
+  scene.add(ralph.scene)
+  ralph.scene.position.set(250,3.4,80)
+  ralph.scene.scale.set(5,5,5)
+  ralph.scene.rotateY(Math.PI)
+
 })
 //adding cars using class
 
@@ -193,21 +250,30 @@ scene.add(shop_road)
 shop_road.position.set(-260,3.4,-150)
 shop_road.rotateX(Math.PI/2)
 shop_road.rotateZ(Math.PI/2)
-//creating sidewalk
-function creating_sidewalk(Positionx , Positiony , Positionz , Width , Length){
-  const sidewalk_geo = new three.PlaneGeometry(Width , Length)
-  const sidewalk_mesh = new three.MeshBasicMaterial({
-    color : 0x0808080,
-    side : three.DoubleSide
+//creating sidewalk 1
+const side_walk1geo = new three.PlaneGeometry(20,260)
+const side_walk1mesh = new three.MeshBasicMaterial({
+  color: 0x0808080,
+  side: three.DoubleSide
+})
+const side_walk1 =  new three.Mesh(side_walk1geo,side_walk1mesh)
+scene.add(side_walk1)
 
-  })
-  const sidewalk = new three.Mesh(sidewalk_geo,sidewalk_mesh)
-  scene.add(sidewalk)
-  sidewalk.position.set(Positionx,Positiony,Positionz)
-  sidewalk.rotateY(Math.Pi/2)
+side_walk1.rotateX(Math.PI/2)
+side_walk1.rotateZ(Math.PI/2)
+side_walk1.position.set(172,3.4,58)
+//creating sidewalk2
 
-}
-creating_sidewalk(-100,30,-30 ,25,80)
+const side_walk2geo = new three.PlaneGeometry(20,260)
+const side_walk2mesh = new three.MeshBasicMaterial({
+  color: 0x0808080,
+  side: three.DoubleSide
+})
+const side_walk2 =  new three.Mesh(side_walk2geo,side_walk2mesh)
+scene.add(side_walk2)
+side_walk2.rotateX(Math.PI/2)
+side_walk2.rotateZ(Math.PI/2)
+side_walk2.position.set(-164,3.4,58.4)
 
 
 function animate(){

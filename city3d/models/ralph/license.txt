@@ -1,0 +1,11 @@
+Model Information:
+* title:	Wreck- It Ralph
+* source:	https://sketchfab.com/3d-models/wreck-it-ralph-1015bf1ff57445b69af7a2639788073b
+* author:	Leo Fossa (https://sketchfab.com/utsuki)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Wreck- It Ralph" (https://sketchfab.com/3d-models/wreck-it-ralph-1015bf1ff57445b69af7a2639788073b) by Leo Fossa (https://sketchfab.com/utsuki) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

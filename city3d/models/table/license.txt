@@ -1,0 +1,11 @@
+Model Information:
+* title:	Beer Pong Table
+* source:	https://sketchfab.com/3d-models/beer-pong-table-42c6d641a25e4bce95818601f8b2030e
+* author:	Pieter Ferreira (https://sketchfab.com/Badboy17Aiden)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Beer Pong Table" (https://sketchfab.com/3d-models/beer-pong-table-42c6d641a25e4bce95818601f8b2030e) by Pieter Ferreira (https://sketchfab.com/Badboy17Aiden) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
